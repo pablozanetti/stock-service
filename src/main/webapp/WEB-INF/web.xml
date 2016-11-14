@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-    <display-name>Stock Management</display-name>
+    <display-name>stock-service</display-name>
     <servlet>
         <servlet-name>Jersey RESTful Application</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
@@ -11,6 +11,7 @@
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>net.strangled.stockService</param-value>
         </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>Jersey RESTful Application</servlet-name>

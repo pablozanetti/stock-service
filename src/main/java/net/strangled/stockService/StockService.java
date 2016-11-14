@@ -5,13 +5,28 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/StockService")
+@Path("/stockService")
 public class StockService {
 
     @GET
     @Path("/stock")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getUsers(){
-        return "{hello:hello}";
+    public String getStock(){
+        return "{\"hello\":\"hello\"}";
     }
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String sayHi(){
+        return "Hi";
+    }
+
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    public String sayHtmlHello() {
+        return "<html> " + "<title>" + "Hello" + "</title>"
+                + "<body><h1>" + "Hello" + "</body></h1>" + "</html> ";
+    }
+
+
 }
