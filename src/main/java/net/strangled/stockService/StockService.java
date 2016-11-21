@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/stockService")
 public class StockService {
 
+    // http://localhost:8080/stock-service/rest/stockService/stock
     @GET
     @Path("/stock")
     @Produces(MediaType.APPLICATION_JSON)
