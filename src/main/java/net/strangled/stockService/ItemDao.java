@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class ItemDao {
 
+    // TODO create a connection on startup and/or use a connection pool?
     // TODO add this to properties file or parameters
     private static String jdbcURL = "jdbc:postgresql://localhost:5432/stock";
     private static String dbUser = "postgres";
@@ -43,6 +44,29 @@ public class ItemDao {
     }
 
     public int updateItem(Item item) {
-        return 1;
+        int count = 0;
+        try {
+            Class.forName("org.postgresql.Driver").newInstance();
+            conn = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+            if (!conn.isClosed()) {
+
+                PreparedStatement updateItem = conn.prepareStatement(UPDATE_ITEM_AMOUNT);
+                updateItem.setInt(1, item.getAmount());
+                updateItem.setLong(2, item.getId());
+                count = updateItem.executeUpdate();
+                updateItem.close();
+            }
+
+        } catch (Exception e) {
+            System.err.println("Exception: "+e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {}
+        }
+
+        return count;
     }
 }

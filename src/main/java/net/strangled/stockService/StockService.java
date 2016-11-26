@@ -30,7 +30,7 @@ public class StockService {
     @Consumes(MediaType.APPLICATION_JSON)
      public Response updateItem(Item item) {
         int result = new ItemDao().updateItem(item);
-        if(result == 1){
+        if(result >= 1){
             return Response.status(200).entity(SUCCESS_RESULT).build();
         }
         return Response.status(200).entity(FAILURE_RESULT).build();
