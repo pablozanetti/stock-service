@@ -2,11 +2,19 @@ package net.strangled.stockService;
 
 public class Item {
 
-    private int id;
-    private String name;
-    private int amount;
+    public long id;
+    public String name;
+    public int amount;
 
-    public int getId() {
+    public Item() {}
+
+    public Item(long id, String name, int amount) {
+        this.id = id;
+        this.name = name;
+        this.amount = amount;
+    }
+
+    public long getId() {
         return id;
     }
 
