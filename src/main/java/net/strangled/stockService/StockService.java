@@ -3,9 +3,10 @@ package net.strangled.stockService;
 import com.google.gson.Gson;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
+import java.lang.annotation.Annotation;
+import java.net.URI;
+import java.util.*;
 
 @Path("/stockService")
 public class StockService {
@@ -17,9 +18,10 @@ public class StockService {
     @GET
     @Path("/stock")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getStock(){
+    public Response getStock(){
         ArrayList<Item> items = new ItemDao().getItems();
-        return new Gson().toJson(items);
+        return Response.status(200).header("Access-Control-Allow-Origin","*").entity(new Gson().toJson(items)).build();
+        //return new Gson().toJson(items);
     }
 
     // http://localhost:8080/stock-service/rest/stockService/items
